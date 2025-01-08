@@ -1,29 +1,85 @@
-# Spark NLP for Text Manipulation
+## **Context**
+This project was developed **prior to the release of ChatGPT and other advanced generative AI models**, showcasing foundational natural language processing techniques and manual model development. The focus was on leveraging pre-trained transformers like T5 and Spark NLP for solving text summarization and information extraction tasks.
 
-## Problem Statement
-Every day, a massive amount of text information is produced. Sometimes, we cannot afford to read all the articles we want because of time constraint. Also, we sometimes want to extract certain information that is not possible through a simple googling. In this project, we will attempt to build a text summarization model and an information extraction model to help us obtain information efficiently.
+# **Spark NLP for Text Manipulation** ✍️
 
-## Overview of Steps
-1.	Install required software
-2.	Obtain the data (“All the news” from Kaggle) and remove null values
-3.	Explore the data and create visualization to understand data
-4.	Create a random subset of data for the project
-5.	Clean the data (remove multiples spaces and other dirty data)
-6.	Create a summarization model using Google T5 (Text-to-Text Transfer Transformer)
-7.	Create an information extraction model using RegexMatcher
-8.	Examine the results from the models
+## **Problem Statement**
+In today’s information-driven world, vast amounts of text are generated daily. Reading every article of interest is often impractical due to time constraints. Moreover, extracting specific information from large text corpora can be challenging with conventional search methods. This project aims to address these challenges by building:
+1. A **text summarization model** for efficient information distillation.
+2. An **information extraction model** to retrieve specific details seamlessly.
 
-## Big Dataset
-“All the news” dataset from Kaggle (https://www.kaggle.com/datasets/snapcrack/all-the-news)
-File: articles1.csv
-Size: 203.54 MB  |  Sample size: 12.6 MB  |  Format: csv
+---
 
-## Hardware
-Ubuntu 22.04.2 LTS 64-bit on VMware 17 Player, 
-Intel i7-10750H CPU, 16GB RAM
+## **Project Workflow**
+### **1. Install Required Software**
+Set up the necessary environment to support text processing and modeling using Spark NLP.
 
-## Software
-Python 3.10.6, PySpark 3.3.1, Java 8 (IMPORTANT)
+### **2. Data Acquisition and Cleaning**
+- Dataset: **“All the News”** from Kaggle ([Dataset Link](https://www.kaggle.com/datasets/snapcrack/all-the-news)).
+- File Used: `articles1.csv`  
+  - Size: **203.54 MB** | Subset Size: **12.6 MB** | Format: `CSV`
+- Preprocessing:
+  - Removed null values.
+  - Cleaned text data to eliminate multiple spaces and other inconsistencies.
 
-## Lessons Learned and Pros/Cons
-Although T5-small generated summaries, the results are not good enough to be actually useful. T5-base generated better summaries, but because of memory issue, other transformers such as Bart could not be successfully used in this project. We also successfully extracted information using RegexMatcher, but with more advanced methods and more time, we can create a more useful models.
+### **3. Data Exploration**
+Conducted exploratory data analysis (EDA) and visualizations to gain insights into the dataset, including the distribution of article lengths, publication dates, and sources.
+
+### **4. Model Development**
+#### **a. Text Summarization**
+- **Model Used**: Google T5 (Text-to-Text Transfer Transformer).
+  - **T5-Small**: Generated summaries but lacked contextual coherence and usability.
+  - **T5-Base**: Produced significantly better summaries but required substantial memory resources.
+  - **Challenges**: Memory limitations restricted the use of larger transformer models like BART.
+
+#### **b. Information Extraction**
+- **Technique Used**: RegexMatcher from Spark NLP.
+  - Successfully extracted structured information based on predefined patterns.
+  - Provides a foundation for further development with more sophisticated methods.
+
+### **5. Results and Evaluation**
+- **Summarization**: While T5-Base performed reasonably well, room for improvement remains, especially in generating highly coherent and concise summaries for large-scale text.
+- **Extraction**: RegexMatcher proved effective but requires refinement and scalability for broader use cases.
+
+---
+
+## **Technical Specifications**
+### **Hardware**
+- **OS**: Ubuntu 22.04.2 LTS (64-bit) on VMware Workstation Player 17.
+- **Processor**: Intel i7-10750H.
+- **Memory**: 16GB RAM.
+
+### **Software**
+- **Python**: 3.10.6.
+- **PySpark**: 3.3.1.
+- **Java**: Java 8 (Required for Spark NLP).
+
+---
+
+## **Lessons Learned**
+1. **Modeling Challenges**:
+   - Smaller transformer models like T5-Small are insufficient for high-quality summarization tasks.
+   - Larger models (e.g., T5-Base) offer better performance but require high computational resources.
+2. **RegexMatcher**:
+   - While effective, regex-based extraction is inherently limited and should be complemented with machine learning or deep learning approaches for broader applications.
+3. **Infrastructure**:
+   - Managing large datasets and transformer models on limited hardware presents significant challenges, highlighting the need for more robust systems or cloud-based solutions.
+
+---
+
+## **Future Enhancements**
+- **Improve Summarization**:
+  - Experiment with advanced transformer models like BART or Pegasus on a distributed cloud infrastructure.
+  - Fine-tune pre-trained models on domain-specific text for better results.
+- **Enhance Information Extraction**:
+  - Incorporate named entity recognition (NER) models and knowledge graphs for dynamic and context-aware extraction.
+- **Scale Infrastructure**:
+  - Transition to scalable environments (e.g., AWS EMR, Databricks) to handle larger datasets and compute-intensive models.
+
+---
+
+## **How to Use This Repository**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/spark-nlp-text-manipulation.git
+   cd spark-nlp-text-manipulation
